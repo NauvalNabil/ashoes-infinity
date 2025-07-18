@@ -632,11 +632,22 @@
                                     Cart
                                 </a>
                             </li>
+                            @auth
+                                @if(auth()->user()->isAdmin())
+                                <li>
+                                    <a href="{{ route('admin.dashboard') }}" class="border-0">
+                                        Admin Panel
+                                    </a>
+                                </li>
+                                @endif
+                            @endauth
+                            @guest
                             <li>
                                 <a href="{{ route('login') }}" class="border-0">
-                                    Login ta
+                                    Login
                                 </a>
                             </li>
+                            @endguest
                             <form action="{{ route('logout') }}" method="post">
                                 @csrf
                                 @method('POST')

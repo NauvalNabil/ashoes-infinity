@@ -2,6 +2,23 @@
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
+    <!-- Demo Accounts Info -->
+    <div class="mb-6 p-4 bg-gray-800 border border-pink-400 rounded-lg">
+        <h3 class="text-lg font-semibold text-pink-400 mb-3">Demo Accounts</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+            <div class="bg-gray-700 p-3 rounded">
+                <h4 class="font-semibold text-pink-300 mb-2">Admin Account</h4>
+                <p class="text-gray-300">Email: <span class="text-white">admin@ashoes.com</span></p>
+                <p class="text-gray-300">Password: <span class="text-white">admin123</span></p>
+            </div>
+            <div class="bg-gray-700 p-3 rounded">
+                <h4 class="font-semibold text-pink-300 mb-2">User Account</h4>
+                <p class="text-gray-300">Email: <span class="text-white">user@ashoes.com</span></p>
+                <p class="text-gray-300">Password: <span class="text-white">user123</span></p>
+            </div>
+        </div>
+    </div>
+
     <form method="POST" action="{{ route('login') }}">
         @csrf
 
