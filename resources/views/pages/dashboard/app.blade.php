@@ -15,117 +15,380 @@
     <meta content="Stylish - Shoes Online Store HTML Template" name="description" />
     <link href="{{ asset('css/vendor.css') }}" rel="stylesheet" />
     <link href="{{ asset('style.css') }}" rel="stylesheet" type="text/css" />
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=Playfair+Display:ital,wght@0,900;1,900&amp;family=Source+Sans+Pro:wght@400;600;700;900&amp;display=swap"
         rel="stylesheet" />
     <style>
+        /* Global Styles */
         body {
-            background-color: #000 !important;
-            color: pink !important;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%) !important;
+            color: #e91e63 !important;
             font-family: 'Inter', sans-serif;
+            line-height: 1.6;
         }
 
-        a,
-        a:hover,
-        a:focus,
-        a:visited {
-            color: #ffc0cb !important;
+        /* Header Styles */
+        .header {
+            background: rgba(0, 0, 0, 0.95) !important;
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(233, 30, 99, 0.2);
+            box-shadow: 0 4px 20px rgba(233, 30, 99, 0.1);
         }
 
-        header,
-        footer,
-        nav,
-        section,
-        .modal-content,
-        .card,
-        .coupon,
-        .search-box,
-        .product-card,
-        .collection-card,
-        .cart-concern,
-        .shopping-cart,
-        .btn-light,
-        .form-control,
-        .input-number,
-        input,
-        .text-input {
-            background-color: #000 !important;
-            color: pink !important;
-            border-color: pink !important;
+        /* Top Header */
+        .header-top {
+            background: linear-gradient(90deg, #e91e63, #f06292) !important;
         }
 
-        h1,
-        h2,
-        h3,
-        h4,
-        h5,
-        h6,
-        p,
-        span,
-        li,
-        label,
-        strong {
-            color: pink !important;
+        .header-link {
+            color: #fff !important;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
         }
 
+        .header-link:hover {
+            color: #000 !important;
+            transform: translateY(-1px);
+        }
+
+        .social-link {
+            color: #fff !important;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            color: #000 !important;
+            transform: scale(1.1);
+        }
+
+        /* Main Navigation */
+        .navbar {
+            background: rgba(0, 0, 0, 0.98) !important;
+            padding: 15px 0;
+        }
+
+        .navbar-brand img {
+            height: 45px;
+            filter: brightness(0) invert(1);
+        }
+
+        .navbar-nav .nav-link {
+            color: #e91e63 !important;
+            font-weight: 600;
+            font-size: 1rem;
+            margin: 0 15px;
+            padding: 10px 0 !important;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-nav .nav-link:hover,
+        .navbar-nav .nav-link.active {
+            color: #f06292 !important;
+            transform: translateY(-2px);
+        }
+
+        .navbar-nav .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #e91e63, #f06292);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .navbar-nav .nav-link:hover::after,
+        .navbar-nav .nav-link.active::after {
+            width: 100%;
+        }
+
+        /* Dropdown Menus */
+        .dropdown-menu {
+            background: rgba(0, 0, 0, 0.95) !important;
+            border: 1px solid rgba(233, 30, 99, 0.2) !important;
+            box-shadow: 0 10px 30px rgba(233, 30, 99, 0.2);
+            backdrop-filter: blur(20px);
+        }
+
+        .dropdown-item {
+            color: #e91e63 !important;
+            padding: 12px 20px;
+            transition: all 0.3s ease;
+        }
+
+        .dropdown-item:hover {
+            background: rgba(233, 30, 99, 0.1) !important;
+            color: #f06292 !important;
+            transform: translateX(5px);
+        }
+
+        /* Buttons & Links */
         .btn,
         button,
-        input[type="submit"],
-        .btn-black,
-        .btn-red,
-        .btn-outline-gray {
-            background-color: pink !important;
-            color: #000 !important;
-            border: 2px solid pink !important;
-            font-weight: bold;
+        input[type="submit"] {
+            background: linear-gradient(135deg, #e91e63, #f06292) !important;
+            color: #fff !important;
+            border: none !important;
+            font-weight: 600;
+            padding: 12px 25px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
             text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .btn:hover,
-        .btn-black:hover,
-        .btn-red:hover,
-        .btn-outline-gray:hover {
-            background-color: #000 !important;
-            color: pink !important;
-            border: 2px solid pink !important;
+        button:hover {
+            background: linear-gradient(135deg, #c2185b, #e91e63) !important;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(233, 30, 99, 0.4);
         }
 
-        svg use,
-        svg path {
-            fill: pink !important;
+        .btn-link {
+            background: none !important;
+            color: #e91e63 !important;
+            text-decoration: none;
+            padding: 8px 15px;
         }
 
-        .coupon .bold-text {
-            background-color: pink !important;
-            color: #000 !important;
-            padding: 10px;
-            font-weight: bold;
-            display: inline-block;
+        /* Cards & Sections */
+        .card,
+        .product-card,
+        .collection-card {
+            background: rgba(0, 0, 0, 0.8) !important;
+            border: 1px solid rgba(233, 30, 99, 0.2) !important;
+            border-radius: 15px;
+            box-shadow: 0 8px 30px rgba(233, 30, 99, 0.1);
+            transition: all 0.3s ease;
+            overflow: hidden;
         }
 
-        .border-top,
-        .border-bottom {
-            border-color: pink !important;
-
+        .card:hover,
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(233, 30, 99, 0.2);
+            border-color: rgba(233, 30, 99, 0.5);
         }
 
+        /* Text Elements */
+        h1, h2, h3, h4, h5, h6 {
+            color: #e91e63 !important;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        p, span, li, label {
+            color: #b39ddb !important;
+        }
+
+        strong {
+            color: #e91e63 !important;
+        }
+
+        /* Forms */
+        .form-control,
+        input,
+        textarea {
+            background: rgba(0, 0, 0, 0.8) !important;
+            border: 1px solid rgba(233, 30, 99, 0.3) !important;
+            color: #e91e63 !important;
+            border-radius: 10px;
+            padding: 12px 15px;
+        }
+
+        .form-control:focus,
+        input:focus {
+            border-color: #e91e63 !important;
+            box-shadow: 0 0 10px rgba(233, 30, 99, 0.3) !important;
+        }
+
+        /* Modals */
+        .modal-content {
+            background: rgba(0, 0, 0, 0.95) !important;
+            border: 1px solid rgba(233, 30, 99, 0.2) !important;
+            border-radius: 15px;
+        }
+
+        .modal-header {
+            border-bottom: 1px solid rgba(233, 30, 99, 0.2) !important;
+        }
+
+        /* Swiper */
         .swiper-pagination-bullet {
-            background-color: grey !important;
+            background-color: rgba(233, 30, 99, 0.5) !important;
             opacity: 1;
         }
 
         .swiper-pagination-bullet-active {
-            background-color: pink !important;
+            background-color: #e91e63 !important;
         }
 
+        /* Hero Images */
         .jarallax-img {
             width: 100%;
-            height: 500px;
-            /* Ubah sesuai kebutuhan */
+            height: 350px;
             object-fit: cover;
-            /* Untuk crop gambar agar tetap rapi */
+            border-radius: 15px;
+        }
+
+        /* SVG Icons */
+        svg use,
+        svg path {
+            fill: #e91e63 !important;
+        }
+
+        /* Borders */
+        .border-top,
+        .border-bottom {
+            border-color: rgba(233, 30, 99, 0.2) !important;
+        }
+
+        /* Coupon */
+        .coupon .bold-text {
+            background: linear-gradient(135deg, #e91e63, #f06292) !important;
+            color: #fff !important;
+            padding: 15px 20px;
+            font-weight: 700;
+            border-radius: 10px;
+            display: inline-block;
+        }
+
+        /* Hover Effects */
+        a {
+            color: #e91e63 !important;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        a:hover {
+            color: #f06292 !important;
+        }
+
+        /* Search */
+        .search-box {
+            background: rgba(0, 0, 0, 0.9) !important;
+            border: 1px solid rgba(233, 30, 99, 0.2) !important;
+            border-radius: 10px;
+        }
+
+        /* Price */
+        .product-price {
+            color: #4caf50 !important;
+            font-weight: 700;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            margin-top: 0 !important;
+            min-height: 45vh;
+        }
+
+        .hero-card {
+            background: rgba(0, 0, 0, 0.6) !important;
+            border-radius: 20px !important;
+            overflow: hidden;
+            position: relative;
+            min-height: 400px;
+        }
+
+        .hero-bg {
+            position: absolute !important;
+            top: 0;
+            left: 0;
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover !important;
+            z-index: -1;
+        }
+
+        .hero-content {
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(233, 30, 99, 0.1)) !important;
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            border: 1px solid rgba(233, 30, 99, 0.3);
+            max-width: 600px;
+        }
+
+        .hero-title {
+            color: #fff !important;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-subtitle {
+            color: #f06292 !important;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            animation: fadeInUp 1.2s ease;
+        }
+
+        /* Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card,
+        .product-card {
+            animation: fadeInUp 0.6s ease;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-section {
+                min-height: 35vh;
+            }
+
+            .hero-card {
+                min-height: 300px;
+            }
+
+            .jarallax-img {
+                height: 250px;
+            }
+
+            .hero-content {
+                margin: 20px !important;
+                padding: 20px !important;
+            }
+
+            .hero-title {
+                font-size: 2rem !important;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-section {
+                min-height: 30vh;
+            }
+
+            .hero-card {
+                min-height: 250px;
+            }
+
+            .jarallax-img {
+                height: 200px;
+            }
+
+            .hero-title {
+                font-size: 1.5rem !important;
+            }
         }
     </style>
 </head>
@@ -580,39 +843,39 @@
         </div>
     </div>
     <!-- Login -->
-    <header class="site-header text-black" id="header">
+    <header class="site-header header" id="header">
         <div class="header-top border-bottom py-2">
             <div class="container-lg">
                 <div class="row justify-content-evenly">
                     <div class="col">
                         <ul class="social-links list-unstyled d-flex m-0">
-                            <li class="pe-2">
-                                <a href="#">
-                                    <svg class="facebook" height="20" width="20">
+                            <li class="pe-3">
+                                <a href="#" class="social-link">
+                                    <svg class="facebook" height="18" width="18">
                                         <use xlink:href="#facebook">
                                         </use>
                                     </svg>
                                 </a>
                             </li>
-                            <li class="pe-2">
-                                <a href="#">
-                                    <svg class="instagram" height="20" width="20">
+                            <li class="pe-3">
+                                <a href="#" class="social-link">
+                                    <svg class="instagram" height="18" width="18">
                                         <use xlink:href="#instagram">
                                         </use>
                                     </svg>
                                 </a>
                             </li>
-                            <li class="pe-2">
-                                <a href="#">
-                                    <svg class="youtube" height="20" width="20">
+                            <li class="pe-3">
+                                <a href="#" class="social-link">
+                                    <svg class="youtube" height="18" width="18">
                                         <use xlink:href="#youtube">
                                         </use>
                                     </svg>
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
-                                    <svg class="pinterest" height="20" width="20">
+                                <a href="#" class="social-link">
+                                    <svg class="pinterest" height="18" width="18">
                                         <use xlink:href="#pinterest">
                                         </use>
                                     </svg>
@@ -621,40 +884,41 @@
                         </ul>
                     </div>
                     <div class="col">
-                        <ul class="d-flex justify-content-end gap-3 list-unstyled m-0">
+                        <ul class="d-flex justify-content-end gap-4 list-unstyled m-0">
                             <li>
-                                <a href="#">
+                                <a href="#" class="header-link">
                                     Contact
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
+                                <a href="#" class="header-link">
                                     Cart
                                 </a>
                             </li>
                             @auth
                                 @if(auth()->user()->isAdmin())
                                 <li>
-                                    <a href="{{ route('admin.dashboard') }}" class="border-0">
+                                    <a href="{{ route('admin.dashboard') }}" class="header-link fw-bold">
                                         Admin Panel
                                     </a>
                                 </li>
                                 @endif
+                                <li>
+                                    <form action="{{ route('logout') }}" method="post" class="d-inline">
+                                        @csrf
+                                        @method('POST')
+                                        <button type="submit" class="btn btn-link p-0 text-decoration-none header-link">
+                                            Logout
+                                        </button>
+                                    </form>
+                                </li>
+                            @else
+                                <li>
+                                    <a href="{{ route('login') }}" class="header-link">
+                                        Login
+                                    </a>
+                                </li>
                             @endauth
-                            @guest
-                            <li>
-                                <a href="{{ route('login') }}" class="border-0">
-                                    Login
-                                </a>
-                            </li>
-                            @endguest
-                            <form action="{{ route('logout') }}" method="post">
-                                @csrf
-                                @method('POST')
-                                <button type="submit" class="btn btn-link text-decoration-none">
-                                    Logout
-                                </button>
-                            </form>
                         </ul>
                     </div>
                 </div>
@@ -672,10 +936,12 @@
                 </button>
                 <div class="offcanvas offcanvas-end" id="bdNavbar" tabindex="-1">
                     <div class="offcanvas-header px-4 pb-0">
-                        <a class="navbar-brand ps-3" href="index.html">
-                            <img alt="logo" class="logo" src="{{ asset('images/main-logo.png') }}" />
+                        <a class="navbar-brand ps-3" href="{{ route('home') }}">
+                            <h2 class="fw-bold m-0" style="color: #e91e63 !important; font-family: 'Playfair Display', serif;">
+                                A Shoes
+                            </h2>
                         </a>
-                        <button aria-label="Close" class="btn-close btn-close-black p-5" data-bs-dismiss="offcanvas"
+                        <button aria-label="Close" class="btn-close btn-close-white p-5" data-bs-dismiss="offcanvas"
                             data-bs-target="#bdNavbar" type="button">
                         </button>
                     </div>
@@ -689,24 +955,19 @@
                                 </a>
                                 <ul class="dropdown-menu fw-bold">
                                     <li>
-                                        <a class="dropdown-item" href="index.html">
-                                            Home V1
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="index.html">
-                                            Home V2
+                                        <a class="dropdown-item" href="{{ route('home') }}">
+                                            Home
                                         </a>
                                     </li>
                                 </ul>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link me-5" href="#">
+                                <a class="nav-link me-5" href="#latest-products">
                                     Men
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link me-5" href="#">
+                                <a class="nav-link me-5" href="#latest-products">
                                     Women
                                 </a>
                             </li>
@@ -717,17 +978,17 @@
                                 </a>
                                 <ul class="dropdown-menu fw-bold">
                                     <li>
-                                        <a class="dropdown-item" href="index.html">
+                                        <a class="dropdown-item" href="#latest-products">
                                             About Us
                                         </a>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item" href="index.html">
+                                        <a class="dropdown-item" href="#latest-products">
                                             Shop
                                         </a>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item" href="index.html">
+                                        <a class="dropdown-item" href="#latest-products">
                                             Blog
                                         </a>
                                     </li>
@@ -761,12 +1022,12 @@
                                 </ul>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link me-5" href="index.html">
+                                <a class="nav-link me-5" href="#latest-products">
                                     Shop
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link me-5" href="#">
+                                <a class="nav-link me-5" href="#latest-products">
                                     Sale
                                 </a>
                             </li>
@@ -776,15 +1037,24 @@
                 <div class="user-items ps-0 ps-md-5">
                     <ul class="d-flex justify-content-end list-unstyled align-item-center m-0">
                         <li class="pe-3">
-                            <a class="border-0" data-bs-target="#modallogin" data-bs-toggle="modal" href="login">
-                                <svg class="user" height="24" width="24">
-                                    <use xlink:href="#user">
-                                    </use>
-                                </svg>
-                            </a>
+                            @auth
+                                <a class="border-0" href="{{ route('admin.dashboard') }}" title="Profile">
+                                    <svg class="user" height="24" width="24">
+                                        <use xlink:href="#user">
+                                        </use>
+                                    </svg>
+                                </a>
+                            @else
+                                <a class="border-0" data-bs-target="#modallogin" data-bs-toggle="modal" href="#" title="Login">
+                                    <svg class="user" height="24" width="24">
+                                        <use xlink:href="#user">
+                                        </use>
+                                    </svg>
+                                </a>
+                            @endauth
                         </li>
                         <li class="pe-3">
-                            <a class="border-0" data-bs-target="#modallong" data-bs-toggle="modal" href="#">
+                            <a class="border-0" data-bs-target="#modallong" data-bs-toggle="modal" href="#" title="Cart">
                                 <svg class="shopping-cart" height="24" width="24">
                                     <use xlink:href="#shopping-cart">
                                     </use>
@@ -792,8 +1062,8 @@
                             </a>
                         </li>
                         <li>
-                            <a aria-label="Toggle navigation" class="search-item border-0"
-                                data-bs-target="#search-box" data-bs-toggle="collapse" href="#">
+                            <a aria-label="Toggle search" class="search-item border-0"
+                                data-bs-target="#search-box" data-bs-toggle="collapse" href="#" title="Search">
                                 <svg class="search" height="24" width="24">
                                     <use xlink:href="#search">
                                     </use>
@@ -805,143 +1075,699 @@
             </div>
         </nav>
     </header>
-    <section class="position-relative mt-4" id="intro">
+
+    <section class="position-relative hero-section" id="intro">
         <div class="container-lg">
             <div class="swiper main-swiper">
                 <div class="swiper-wrapper">
+                    @forelse($heroContents as $hero)
                     <div class="swiper-slide">
-                        <div class="card d-flex flex-row align-items-end border-0 large jarallax-keep-img">
-                            <img alt="shoes" class="img-fluid jarallax-img"
+                        <div class=" hero-card card d-flex flex-row align-items-end border-0 large jarallax-keep-img">
+                            @if($hero->background_image)
+                                <img alt="{{ $hero->title }}" class="img-fluid jarallax-img hero-bg"
+                                    src="{{ asset('storage/' . $hero->background_image) }}" />
+                            @else
+                                <img alt="{{ $hero->title }}" class="img-fluid jarallax-img hero-bg"
+                                    src="{{ asset('images/card-image1.jpg') }}" />
+                            @endif
+                            <div class="hero-content cart-concern p-4 m-4 p-lg-5 m-lg-5">
+                                <h1 class="hero-title card-title display-2 fw-bold mb-3 text-white">
+                                    {{ $hero->title }}
+                                </h1>
+                                @if($hero->subtitle)
+                                <p class="hero-subtitle card-subtitle h4 mb-4 text-white">
+                                    {{ $hero->subtitle }}
+                                </p>
+                                @endif
+                                @if($hero->description)
+                                <p class="card-text light mb-4 text-white">
+                                    {{ Str::limit($hero->description, 120) }}
+                                </p>
+                                @endif
+                                @if($hero->button_text && $hero->button_url)
+                                <a class="btn btn-outline-light btn-lg text-uppercase fw-bold px-4 py-2"
+                                    href="{{ $hero->button_url }}">
+                                    {{ $hero->button_text }}
+                                </a>
+                                @else
+                                <a class="btn btn-outline-light btn-lg text-uppercase fw-bold px-4 py-2"
+                                    href="#latest-products">
+                                    Shop Now
+                                </a>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                    @empty
+                    <!-- Default slide jika tidak ada hero content -->
+                    <div class="swiper-slide">
+                        <div class="hero-card card d-flex flex-row align-items-end border-0 large jarallax-keep-img">
+                            <img alt="shoes" class="img-fluid jarallax-img hero-bg"
                                 src="{{ asset('images/card-image1.jpg') }}" />
-                            <div class="cart-concern p-3 m-3 p-lg-5 m-lg-5">
-                                <h2 class="card-title display-3 light">
-                                    Stylish shoes for Women
-                                </h2>
-                                <a class="text-uppercase light mt-3 d-inline-block text-hover fw-bold light-border"
-                                    href="index.html">
+                            <div class="hero-content cart-concern p-4 m-4 p-lg-5 m-lg-5">
+                                <h1 class="hero-title card-title display-2 fw-bold mb-3 text-white">
+                                    Welcome to AShoes Infinity
+                                </h1>
+                                <p class="hero-subtitle card-subtitle h4 mb-4 text-white">
+                                    Discover Premium Footwear Collection
+                                </p>
+                                <a class="btn btn-outline-light btn-lg text-uppercase fw-bold px-4 py-2"
+                                    href="#latest-products">
                                     Shop Now
                                 </a>
                             </div>
                         </div>
                     </div>
-                    <div class="swiper-slide">
-                        <div class="row g-4">
-                            <div class="col-lg-12 mb-4">
-                                <div class="card d-flex flex-row align-items-end border-0 jarallax-keep-img">
-                                    <img alt="shoes" class="img-fluid jarallax-img"
-                                        src="{{ asset('images/card-image2.jpg') }}" />
-                                    <div class="cart-concern p-3 m-3 p-lg-5 m-lg-5">
-                                        <h2 class="card-title style-2 display-4 light">
-                                            Sports Wear
-                                        </h2>
-                                        <a class="text-uppercase light mt-3 d-inline-block text-hover fw-bold light-border"
-                                            href="index.html">
-                                            Shop Now
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-12">
-                                <div class="card d-flex flex-row align-items-end border-0 jarallax-keep-img">
-                                    <img alt="shoes" class="img-fluid jarallax-img"
-                                        src="{{ asset('images/card-image3.jpg') }}" />
-                                    <div class="cart-concern p-3 m-3 p-lg-5 m-lg-5">
-                                        <h2 class="card-title style-2 display-4 light">
-                                            Fashion Shoes
-                                        </h2>
-                                        <a class="text-uppercase light mt-3 d-inline-block text-hover fw-bold light-border"
-                                            href="index.html">
-                                            Shop Now
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="card d-flex flex-row align-items-end border-0 large jarallax-keep-img">
-                            <img alt="shoes" class="img-fluid jarallax-img"
-                                src="{{ asset('images/card-image4.jpg') }}" />
-                            <div class="cart-concern p-3 m-3 p-lg-5 m-lg-5">
-                                <h2 class="card-title display-3 light">
-                                    Stylish shoes for men
-                                </h2>
-                                <a class="text-uppercase light mt-3 d-inline-block text-hover fw-bold light-border"
-                                    href="index.html">
-                                    Shop Now
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="row g-4">
-                            <div class="col-lg-12 mb-4">
-                                <div class="card d-flex flex-row align-items-end border-0 jarallax-keep-img">
-                                    <img alt="shoes" class="img-fluid jarallax-img"
-                                        src="{{ asset('images/card-image5.jpg') }}" />
-                                    <div class="cart-concern p-3 m-3 p-lg-5 m-lg-5">
-                                        <h2 class="card-title style-2 display-4 light">
-                                            Men Shoes
-                                        </h2>
-                                        <a class="text-uppercase light mt-3 d-inline-block text-hover fw-bold light-border"
-                                            href="index.html">
-                                            Shop Now
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-12">
-                                <div class="card d-flex flex-row align-items-end border-0 jarallax-keep-img">
-                                    <img alt="shoes" class="img-fluid jarallax-img"
-                                        src="{{ asset('images/card-image6.jpg') }}" />
-                                    <div class="cart-concern p-3 m-3 p-lg-5 m-lg-5">
-                                        <h2 class="card-title style-2 display-4 light">
-                                            Women Shoes
-                                        </h2>
-                                        <a class="text-uppercase light mt-3 d-inline-block text-hover fw-bold light-border"
-                                            href="index.html">
-                                            Shop Now
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endforelse
                 </div>
-            </div>
-            <div class="swiper-pagination">
+                <!-- Navigation buttons -->
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+                <!-- Pagination -->
+                <div class="swiper-pagination"></div>
             </div>
         </div>
-    </section>
-    <section class="discount-coupon py-2 my-2 py-md-5 my-md-5">
-        <div class="container">
-            <div class="bg-gray coupon position-relative p-5">
-                <div class="bold-text position-absolute">
-                    10% OFF
-                </div>
-                <div class="row justify-content-between align-items-center">
-                    <div class="col-lg-7 col-md-12 mb-3">
-                        <div class="coupon-header">
-                            <h2 class="display-7">
-                                10% OFF Discount Coupons
-                            </h2>
-                            <p class="m-0">
-                                Subscribe us to get 10% OFF on all the purchases
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-12">
-                        <div class="btn-wrap">
-                            <a class="btn btn-black btn-medium text-uppercase hvr-sweep-to-right" href="#">
 
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <!-- Custom CSS untuk memperbaiki tampilan -->
+        <style>
+            .hero-section {
+                min-height: 70vh;
+                overflow: hidden;
+                padding: 0;
+            }
+
+            .main-swiper {
+                width: 100%;
+                height: 70vh;
+                min-height: 500px;
+                position: relative;
+            }
+
+            .swiper-slide {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .hero-card {
+                position: relative;
+                width: 100%;
+                height: 100%;
+                min-height: 500px;
+                overflow: hidden;
+                border-radius: 15px;
+                box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+                display: flex;
+                align-items: flex-end;
+                margin: 0 !important;
+            }
+
+            .hero-bg {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                z-index: 1;
+            }
+
+            .hero-card::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: linear-gradient(45deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 70%, rgba(0,0,0,0.2) 100%);
+                z-index: 2;
+            }
+
+            .hero-content {
+                position: relative;
+                z-index: 3;
+                max-width: 700px;
+                color: white;
+                width: 100%;
+                padding: 2rem 3rem 3rem 3rem !important;
+                margin: 0 !important;
+            }
+
+            .hero-title {
+                font-size: 3.5rem;
+                line-height: 1.1;
+                text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+                margin-bottom: 1rem !important;
+                font-weight: 800;
+            }
+
+            .hero-subtitle {
+                font-size: 1.4rem;
+                text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
+                margin-bottom: 1.5rem !important;
+                opacity: 0.95;
+            }
+
+            .card-text {
+                font-size: 1.1rem;
+                text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
+                margin-bottom: 2rem !important;
+                line-height: 1.6;
+                opacity: 0.9;
+            }
+
+            .btn-outline-light {
+                border: 2px solid white;
+                color: white;
+                background: rgba(255,255,255,0.15);
+                backdrop-filter: blur(15px);
+                transition: all 0.3s ease;
+                padding: 0.75rem 2rem !important;
+                font-weight: 600;
+                border-radius: 50px;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+            }
+
+            .btn-outline-light:hover {
+                background: white;
+                color: #333;
+                transform: translateY(-3px);
+                box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+                border-color: white;
+            }
+
+            .swiper-button-next,
+            .swiper-button-prev {
+                color: white;
+                background: rgba(255,255,255,0.25);
+                width: 55px;
+                height: 55px;
+                border-radius: 50%;
+                backdrop-filter: blur(15px);
+                border: 1px solid rgba(255,255,255,0.3);
+                transition: all 0.3s ease;
+            }
+
+            .swiper-button-next:hover,
+            .swiper-button-prev:hover {
+                background: rgba(255,255,255,0.4);
+                transform: scale(1.1);
+            }
+
+            .swiper-button-next::after,
+            .swiper-button-prev::after {
+                font-size: 18px;
+                font-weight: bold;
+            }
+
+            .swiper-pagination {
+                bottom: 20px !important;
+            }
+
+            .swiper-pagination-bullet {
+                background: white;
+                opacity: 0.6;
+                width: 12px;
+                height: 12px;
+                margin: 0 6px;
+                transition: all 0.3s ease;
+            }
+
+            .swiper-pagination-bullet-active {
+                opacity: 1;
+                background: #e91e63;
+                transform: scale(1.3);
+                box-shadow: 0 0 15px rgba(233, 30, 99, 0.5);
+            }
+
+            /* Responsive Design */
+            @media (max-width: 768px) {
+                .hero-card {
+                    height: 60vh;
+                    min-height: 400px;
+                    border-radius: 10px;
+                }
+
+                .main-swiper {
+                    height: 60vh;
+                    min-height: 400px;
+                }
+
+                .hero-title {
+                    font-size: 2.5rem;
+                }
+
+                .hero-subtitle {
+                    font-size: 1.2rem;
+                }
+
+                .hero-content {
+                    padding: 1.5rem 2rem 2rem 2rem !important;
+                }
+
+                .swiper-button-next,
+                .swiper-button-prev {
+                    width: 45px;
+                    height: 45px;
+                }
+            }
+
+            @media (max-width: 576px) {
+                .hero-card {
+                    border-radius: 8px;
+                }
+
+                .hero-title {
+                    font-size: 2rem;
+                }
+
+                .hero-subtitle {
+                    font-size: 1rem;
+                }
+
+                .card-text {
+                    font-size: 0.9rem;
+                }
+
+                .hero-content {
+                    padding: 1rem 1.5rem 1.5rem 1.5rem !important;
+                }
+
+                .btn-outline-light {
+                    padding: 0.6rem 1.5rem !important;
+                    font-size: 0.9rem;
+                }
+            }
+
+            /* Product Grid Container */
+            .product-content {
+                max-width: 100%;
+                overflow: hidden;
+            }
+
+            .product-content .row {
+                margin: 0 -15px;
+            }
+
+            .product-content .col {
+                padding: 0 15px;
+                flex: 0 0 auto;
+            }
+
+            /* Enhanced Product Card Styling */
+            .product-card {
+                background: white;
+                border-radius: 20px;
+                box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+                transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+                overflow: hidden;
+                border: 1px solid rgba(0, 0, 0, 0.05);
+                height: 100%;
+                min-height: 380px;
+                max-height: 380px;
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+            }
+
+            .product-card:hover {
+                transform: translateY(-8px);
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+                border-color: rgba(233, 30, 99, 0.2);
+            }
+
+            .product-card .card-img {
+                position: relative;
+                overflow: hidden;
+                border-radius: 16px 16px 0 0;
+                height: 220px;
+                min-height: 220px;
+                max-height: 220px;
+                width: 100%;
+                background: #f8f9fa;
+            }
+
+            .product-card .product-image {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: transform 0.5s ease;
+                border-radius: 16px 16px 0 0;
+            }
+
+            .product-card:hover .product-image {
+                transform: scale(1.08);
+            }
+
+            .product-card .cart-concern {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(135deg, rgba(233, 30, 99, 0.9), rgba(233, 30, 99, 0.7));
+                opacity: 0;
+                transition: all 0.3s ease;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 16px 16px 0 0;
+            }
+
+            .product-card:hover .cart-concern {
+                opacity: 1;
+            }
+
+            .product-card .cart-button {
+                transform: translateY(20px);
+                transition: transform 0.3s ease 0.1s;
+            }
+
+            .product-card:hover .cart-button {
+                transform: translateY(0);
+            }
+
+            .product-card .cart-button .btn {
+                width: 45px;
+                height: 45px;
+                border-radius: 50%;
+                border: none;
+                background: white;
+                color: #333;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.3s ease;
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            }
+
+            .product-card .cart-button .btn:hover {
+                background: #e91e63;
+                color: white;
+                transform: scale(1.1);
+                box-shadow: 0 8px 25px rgba(233, 30, 99, 0.3);
+            }
+
+            .product-card .cart-button svg {
+                width: 18px;
+                height: 18px;
+            }
+
+            .product-card .card-detail {
+                padding: 1.5rem 1.25rem 1.25rem;
+                background: white;
+                height: 160px;
+                min-height: 160px;
+                max-height: 160px;
+                flex-grow: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+            }
+
+            .product-card .card-title {
+                font-size: 1rem;
+                font-weight: 600;
+                color: #2d3748;
+                margin-bottom: 0.75rem;
+                line-height: 1.4;
+                transition: color 0.3s ease;
+            }
+
+            .product-card .card-title a {
+                text-decoration: none;
+                color: inherit;
+                transition: color 0.3s ease;
+            }
+
+            .product-card:hover .card-title a {
+                color: #e91e63;
+            }
+
+            .product-card .card-price {
+                font-size: 1.25rem;
+                font-weight: 700;
+                color: #e91e63;
+                margin-top: auto;
+            }
+
+            /* Add to Cart Button in Card Detail */
+            .product-card .btn-primary {
+                background: linear-gradient(135deg, #e91e63, #ad1457);
+                border: none;
+                padding: 0.5rem 1rem;
+                font-size: 0.8rem;
+                font-weight: 600;
+                border-radius: 20px;
+                transition: all 0.3s ease;
+                box-shadow: 0 4px 12px rgba(233, 30, 99, 0.3);
+            }
+
+            .product-card .btn-primary:hover {
+                background: linear-gradient(135deg, #ad1457, #e91e63);
+                transform: translateY(-2px);
+                box-shadow: 0 6px 16px rgba(233, 30, 99, 0.4);
+            }
+
+            .product-card .btn-primary:active {
+                transform: translateY(0);
+                box-shadow: 0 4px 12px rgba(233, 30, 99, 0.3);
+            }
+
+            /* Badge untuk status produk */
+            .product-badge {
+                position: absolute;
+                top: 12px;
+                left: 12px;
+                background: linear-gradient(135deg, #e91e63, #ad1457);
+                color: white;
+                padding: 0.375rem 0.75rem;
+                border-radius: 20px;
+                font-size: 0.75rem;
+                font-weight: 600;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+                z-index: 2;
+                box-shadow: 0 4px 12px rgba(233, 30, 99, 0.3);
+            }
+
+            .product-badge.sale {
+                background: linear-gradient(135deg, #ff6b35, #f7931e);
+                box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
+            }
+
+            .product-badge.new {
+                background: linear-gradient(135deg, #4caf50, #2e7d32);
+                box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+            }
+
+            /* Rating stars */
+            .product-rating {
+                display: flex;
+                align-items: center;
+                gap: 0.25rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .product-rating .star {
+                color: #ffc107;
+                font-size: 0.875rem;
+            }
+
+            .product-rating .star.empty {
+                color: #e9ecef;
+            }
+
+            .product-rating .rating-text {
+                font-size: 0.75rem;
+                color: #6c757d;
+                margin-left: 0.5rem;
+            }
+
+            /* Responsive adjustments */
+            @media (max-width: 992px) {
+                .product-card {
+                    min-height: 360px;
+                    max-height: 360px;
+                }
+
+                .product-card .card-img {
+                    height: 200px;
+                    min-height: 200px;
+                    max-height: 200px;
+                }
+
+                .product-card .card-detail {
+                    height: 160px;
+                    min-height: 160px;
+                    max-height: 160px;
+                    padding: 1.25rem 1rem 1rem;
+                }
+
+                .product-card .card-title {
+                    font-size: 0.9rem;
+                }
+
+                .product-card .card-price {
+                    font-size: 1.1rem;
+                }
+            }
+
+            @media (max-width: 768px) {
+                .product-card {
+                    border-radius: 16px;
+                    min-height: 340px;
+                    max-height: 340px;
+                }
+
+                .product-card .card-img {
+                    border-radius: 12px 12px 0 0;
+                    height: 180px;
+                    min-height: 180px;
+                    max-height: 180px;
+                }
+
+                .product-card .card-detail {
+                    height: 160px;
+                    min-height: 160px;
+                    max-height: 160px;
+                }
+
+                .product-card .product-image {
+                    border-radius: 12px 12px 0 0;
+                }
+
+                .product-card .cart-concern {
+                    border-radius: 12px 12px 0 0;
+                }
+
+                .product-card .cart-button .btn {
+                    width: 40px;
+                    height: 40px;
+                }
+
+                .product-card .cart-button svg {
+                    width: 16px;
+                    height: 16px;
+                }
+            }
+
+            @media (max-width: 576px) {
+                .product-card {
+                    min-height: 320px;
+                    max-height: 320px;
+                }
+
+                .product-card .card-img {
+                    height: 160px;
+                    min-height: 160px;
+                    max-height: 160px;
+                }
+
+                .product-card .card-detail {
+                    height: 160px;
+                    min-height: 160px;
+                    max-height: 160px;
+                    padding: 1rem 0.75rem 0.75rem;
+                }
+
+                .product-card .card-title {
+                    font-size: 0.85rem;
+                    line-height: 1.3;
+                }
+
+                .product-rating {
+                    margin-bottom: 0.75rem;
+                }
+
+                .rating-stars {
+                    font-size: 0.8rem;
+                }
+            }
+
+            /* Touch device optimizations */
+            @media (hover: none) and (pointer: coarse) {
+                .product-card .cart-concern {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+
+                .product-card:hover {
+                    transform: none;
+                }
+
+                .product-card:hover .product-image {
+                    transform: none;
+                }
+
+                .product-card .cart-button .btn {
+                    width: 48px;
+                    height: 48px;
+                }
+
+                .product-card .cart-button svg {
+                    width: 20px;
+                    height: 20px;
+                }
+            }
+
+            /* Section spacing */
+            #featured-products {
+                margin-top: 4rem !important;
+                padding: 2rem 0;
+            }
+
+            .section-title {
+                font-weight: 700;
+                color: #2d3748;
+                margin-bottom: 0;
+                position: relative;
+            }
+
+            .section-title::after {
+                content: '';
+                position: absolute;
+                bottom: -8px;
+                left: 0;
+                width: 60px;
+                height: 3px;
+                background: linear-gradient(135deg, #e91e63, #ad1457);
+                border-radius: 2px;
+            }
+
+            .display-header {
+                margin-bottom: 3rem;
+                padding-bottom: 1rem;
+                border-bottom: 1px solid #e9ecef;
+            }
+
+            .btn-right a {
+                color: #e91e63;
+                text-decoration: none;
+                font-weight: 600;
+                transition: all 0.3s ease;
+                position: relative;
+            }
+
+            .btn-right a::after {
+                content: '→';
+                margin-left: 0.5rem;
+                transition: transform 0.3s ease;
+            }
+
+            .btn-right a:hover {
+                color: #ad1457;
+            }
+
+            .btn-right a:hover::after {
+                transform: translateX(4px);
+            }
+        </style>
     </section>
-    <section class="product-store" id="featured-products">
+    <section class="product-store mt-5" id="featured-products">
         <div class="container-md">
             <div class="display-header d-flex align-items-center justify-content-between">
                 <h2 class="section-title text-uppercase">
@@ -954,23 +1780,29 @@
                 </div>
             </div>
             <div class="product-content padding-small">
-                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5">
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
                     <div class="col mb-4">
                         <div class="product-card position-relative">
                             <div class="card-img">
+                                <div class="product-badge new">New</div>
                                 <img alt="product-item" class="product-image img-fluid"
                                     src="{{ asset('images/card-item1.jpg') }}" />
                                 <div class="cart-concern position-absolute d-flex justify-content-center">
                                     <div class="cart-button d-flex gap-2 justify-content-center align-items-center">
-                                        <button class="btn btn-light" data-bs-target="#modallong"
-                                            data-bs-toggle="modal" type="button">
+                                        <button class="btn btn-light add-to-cart-btn"
+                                            data-product-id="1"
+                                            data-product-name="Running shoes for men"
+                                            data-product-price="99"
+                                            data-product-stock="10"
+                                            type="button" title="Add to Cart">
                                             <svg class="shopping-carriage">
                                                 <use xlink:href="#shopping-carriage">
                                                 </use>
                                             </svg>
                                         </button>
-                                        <button class="btn btn-light" data-bs-target="#modaltoggle"
-                                            data-bs-toggle="modal" type="button">
+                                        <button class="btn btn-light quick-view-btn"
+                                            data-product-id="1"
+                                            type="button" title="Quick View">
                                             <svg class="quick-view">
                                                 <use xlink:href="#quick-view">
                                                 </use>
@@ -980,34 +1812,58 @@
                                 </div>
                                 <!-- cart-concern -->
                             </div>
-                            <div class="card-detail d-flex justify-content-between align-items-center mt-3">
+                            <div class="card-detail d-flex flex-column">
+                                <div class="product-rating">
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                    <span class="star empty">★</span>
+                                    <span class="rating-text">(4.0)</span>
+                                </div>
                                 <h3 class="card-title fs-6 fw-normal m-0">
                                     <a href="index.html">
                                         Running shoes for men
                                     </a>
                                 </h3>
-                                <span class="card-price fw-bold">
-                                    $99
-                                </span>
+                                <div class="d-flex justify-content-between align-items-center mt-3">
+                                    <span class="card-price fw-bold">
+                                        $99
+                                    </span>
+                                    <button class="btn btn-primary btn-sm add-to-cart-btn"
+                                        data-product-id="1"
+                                        data-product-name="Running shoes for men"
+                                        data-product-price="99"
+                                        data-product-stock="10"
+                                        type="button">
+                                        <i class="fas fa-shopping-cart me-1"></i>Add to Cart
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="col mb-4">
                         <div class="product-card position-relative">
                             <div class="card-img">
+                                <div class="product-badge sale">Sale</div>
                                 <img alt="product-item" class="product-image img-fluid"
                                     src="{{ asset('images/card-item2.jpg') }}" />
                                 <div class="cart-concern position-absolute d-flex justify-content-center">
                                     <div class="cart-button d-flex gap-2 justify-content-center align-items-center">
-                                        <button class="btn btn-light" data-bs-target="#modallong"
-                                            data-bs-toggle="modal" type="button">
+                                        <button class="btn btn-light add-to-cart-btn"
+                                            data-product-id="2"
+                                            data-product-name="Running shoes for men"
+                                            data-product-price="99"
+                                            data-product-stock="15"
+                                            type="button" title="Add to Cart">
                                             <svg class="shopping-carriage">
                                                 <use xlink:href="#shopping-carriage">
                                                 </use>
                                             </svg>
                                         </button>
-                                        <button class="btn btn-light" data-bs-target="#modaltoggle"
-                                            data-bs-toggle="modal" type="button">
+                                        <button class="btn btn-light quick-view-btn"
+                                            data-product-id="2"
+                                            type="button" title="Quick View">
                                             <svg class="quick-view">
                                                 <use xlink:href="#quick-view">
                                                 </use>
@@ -1017,34 +1873,58 @@
                                 </div>
                                 <!-- cart-concern -->
                             </div>
-                            <div class="card-detail d-flex justify-content-between align-items-center mt-3">
+                            <div class="card-detail d-flex flex-column">
+                                <div class="product-rating">
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                    <span class="rating-text">(5.0)</span>
+                                </div>
                                 <h3 class="card-title fs-6 fw-normal m-0">
                                     <a href="index.html">
                                         Running shoes for men
                                     </a>
                                 </h3>
-                                <span class="card-price fw-bold">
-                                    $99
-                                </span>
+                                <div class="d-flex justify-content-between align-items-center mt-3">
+                                    <span class="card-price fw-bold">
+                                        $99
+                                    </span>
+                                    <button class="btn btn-primary btn-sm add-to-cart-btn"
+                                        data-product-id="2"
+                                        data-product-name="Running shoes for men"
+                                        data-product-price="99"
+                                        data-product-stock="15"
+                                        type="button">
+                                        <i class="fas fa-shopping-cart me-1"></i>Add to Cart
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="col mb-4">
                         <div class="product-card position-relative">
                             <div class="card-img">
+                                <div class="product-badge">New</div>
                                 <img alt="product-item" class="product-image img-fluid"
                                     src="{{ asset('images/card-item3.jpg') }}" />
                                 <div class="cart-concern position-absolute d-flex justify-content-center">
                                     <div class="cart-button d-flex gap-2 justify-content-center align-items-center">
-                                        <button class="btn btn-light" data-bs-target="#modallong"
-                                            data-bs-toggle="modal" type="button">
+                                        <button class="btn btn-light add-to-cart-btn"
+                                            data-product-id="3"
+                                            data-product-name="Running shoes for men"
+                                            data-product-price="99"
+                                            data-product-stock="8"
+                                            type="button" title="Add to Cart">
                                             <svg class="shopping-carriage">
                                                 <use xlink:href="#shopping-carriage">
                                                 </use>
                                             </svg>
                                         </button>
-                                        <button class="btn btn-light" data-bs-target="#modaltoggle"
-                                            data-bs-toggle="modal" type="button">
+                                        <button class="btn btn-light quick-view-btn"
+                                            data-product-id="3"
+                                            type="button" title="Quick View">
                                             <svg class="quick-view">
                                                 <use xlink:href="#quick-view">
                                                 </use>
@@ -1054,34 +1934,58 @@
                                 </div>
                                 <!-- cart-concern -->
                             </div>
-                            <div class="card-detail d-flex justify-content-between align-items-center mt-3">
+                            <div class="card-detail d-flex flex-column">
+                                <div class="product-rating">
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                    <span class="star empty">★</span>
+                                    <span class="rating-text">(3.8)</span>
+                                </div>
                                 <h3 class="card-title fs-6 fw-normal m-0">
                                     <a href="index.html">
                                         Running shoes for men
                                     </a>
                                 </h3>
-                                <span class="card-price fw-bold">
-                                    $99
-                                </span>
+                                <div class="d-flex justify-content-between align-items-center mt-3">
+                                    <span class="card-price fw-bold">
+                                        $99
+                                    </span>
+                                    <button class="btn btn-primary btn-sm add-to-cart-btn"
+                                        data-product-id="3"
+                                        data-product-name="Running shoes for men"
+                                        data-product-price="99"
+                                        data-product-stock="8"
+                                        type="button">
+                                        <i class="fas fa-shopping-cart me-1"></i>Add to Cart
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="col mb-4">
                         <div class="product-card position-relative">
                             <div class="card-img">
+                                <div class="product-badge sale">Sale</div>
                                 <img alt="product-item" class="product-image img-fluid"
                                     src="{{ asset('images/card-item4.jpg') }}" />
                                 <div class="cart-concern position-absolute d-flex justify-content-center">
                                     <div class="cart-button d-flex gap-2 justify-content-center align-items-center">
-                                        <button class="btn btn-light" data-bs-target="#modallong"
-                                            data-bs-toggle="modal" type="button">
+                                        <button class="btn btn-light add-to-cart-btn"
+                                            data-product-id="4"
+                                            data-product-name="Running shoes for men"
+                                            data-product-price="99"
+                                            data-product-stock="12"
+                                            type="button" title="Add to Cart">
                                             <svg class="shopping-carriage">
                                                 <use xlink:href="#shopping-carriage">
                                                 </use>
                                             </svg>
                                         </button>
-                                        <button class="btn btn-light" data-bs-target="#modaltoggle"
-                                            data-bs-toggle="modal" type="button">
+                                        <button class="btn btn-light quick-view-btn"
+                                            data-product-id="4"
+                                            type="button" title="Quick View">
                                             <svg class="quick-view">
                                                 <use xlink:href="#quick-view">
                                                 </use>
@@ -1091,34 +1995,58 @@
                                 </div>
                                 <!-- cart-concern -->
                             </div>
-                            <div class="card-detail d-flex justify-content-between align-items-center mt-3">
+                            <div class="card-detail d-flex flex-column">
+                                <div class="product-rating">
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                    <span class="rating-text">(4.8)</span>
+                                </div>
                                 <h3 class="card-title fs-6 fw-normal m-0">
                                     <a href="index.html">
                                         Running shoes for men
                                     </a>
                                 </h3>
-                                <span class="card-price fw-bold">
-                                    $99
-                                </span>
+                                <div class="d-flex justify-content-between align-items-center mt-3">
+                                    <span class="card-price fw-bold">
+                                        $99
+                                    </span>
+                                    <button class="btn btn-primary btn-sm add-to-cart-btn"
+                                        data-product-id="4"
+                                        data-product-name="Running shoes for men"
+                                        data-product-price="99"
+                                        data-product-stock="12"
+                                        type="button">
+                                        <i class="fas fa-shopping-cart me-1"></i>Add to Cart
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="col mb-4">
                         <div class="product-card position-relative">
                             <div class="card-img">
+                                <div class="product-badge">New</div>
                                 <img alt="product-item" class="product-image img-fluid"
                                     src="{{ asset('images/card-item5.jpg') }}" />
                                 <div class="cart-concern position-absolute d-flex justify-content-center">
                                     <div class="cart-button d-flex gap-2 justify-content-center align-items-center">
-                                        <button class="btn btn-light" data-bs-target="#modallong"
-                                            data-bs-toggle="modal" type="button">
+                                        <button class="btn btn-light add-to-cart-btn"
+                                            data-product-id="5"
+                                            data-product-name="Running shoes for men"
+                                            data-product-price="99"
+                                            data-product-stock="6"
+                                            type="button" title="Add to Cart">
                                             <svg class="shopping-carriage">
                                                 <use xlink:href="#shopping-carriage">
                                                 </use>
                                             </svg>
                                         </button>
-                                        <button class="btn btn-light" data-bs-target="#modaltoggle"
-                                            data-bs-toggle="modal" type="button">
+                                        <button class="btn btn-light quick-view-btn"
+                                            data-product-id="5"
+                                            type="button" title="Quick View">
                                             <svg class="quick-view">
                                                 <use xlink:href="#quick-view">
                                                 </use>
@@ -1128,54 +2056,34 @@
                                 </div>
                                 <!-- cart-concern -->
                             </div>
-                            <div class="card-detail d-flex justify-content-between align-items-center mt-3">
+                            <div class="card-detail d-flex flex-column">
+                                <div class="product-rating">
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                    <span class="star empty">★</span>
+                                    <span class="rating-text">(4.0)</span>
+                                </div>
                                 <h3 class="card-title fs-6 fw-normal m-0">
                                     <a href="index.html">
                                         Running shoes for men
                                     </a>
                                 </h3>
-                                <span class="card-price fw-bold">
-                                    $99
-                                </span>
+                                <div class="d-flex justify-content-between align-items-center mt-3">
+                                    <span class="card-price fw-bold">
+                                        $99
+                                    </span>
+                                    <button class="btn btn-primary btn-sm add-to-cart-btn"
+                                        data-product-id="5"
+                                        data-product-name="Running shoes for men"
+                                        data-product-price="99"
+                                        data-product-stock="6"
+                                        type="button">
+                                        <i class="fas fa-shopping-cart me-1"></i>Add to Cart
+                                    </button>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="py-2 my-2 py-md-5 my-md-5" id="collection-products">
-        <div class="container-md">
-            <div class="row">
-                <div class="col-lg-6 col-md-6 mb-4">
-                    <div class="collection-card card border-0 d-flex flex-row align-items-end jarallax-keep-img">
-                        <img alt="product-item" class="border-rounded-10 img-fluid jarallax-img"
-                            src="{{ asset('images/collection-item1.jpg') }}" />
-                        <div class="card-detail p-3 m-3 p-lg-5 m-lg-5">
-                            <h3 class="card-title display-3">
-                                <a href="#">
-                                    Minimal Collection
-                                </a>
-                            </h3>
-                            <a class="text-uppercase mt-3 d-inline-block text-hover fw-bold" href="index.html">
-                                Shop Now
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6">
-                    <div class="collection-card card border-0 d-flex flex-row jarallax-keep-img">
-                        <img alt="product-item" class="border-rounded-10 img-fluid jarallax-img"
-                            src="{{ asset('images/collection-item2.jpg') }}" />
-                        <div class="card-detail p-3 m-3 p-lg-5 m-lg-5">
-                            <h3 class="card-title display-3">
-                                <a href="#">
-                                    Sneakers Collection
-                                </a>
-                            </h3>
-                            <a class="text-uppercase mt-3 d-inline-block text-hover fw-bold" href="index.html">
-                                Shop Now
-                            </a>
                         </div>
                     </div>
                 </div>
@@ -1195,23 +2103,43 @@
                 </div>
             </div>
             <div class="product-content padding-small">
-                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5">
-                    <div class="col mb-4 mb-3">
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
+                    @forelse($latestProducts as $product)
+                    <div class="col mb-4">
                         <div class="product-card position-relative">
+                            @if($product->stock > 0 && $product->created_at >= now()->subDays(7))
+                                <div class="product-badge">New</div>
+                            @elseif($product->price < 100)
+                                <div class="product-badge sale">Sale</div>
+                            @endif
                             <div class="card-img">
-                                <img alt="product-item" class="product-image img-fluid"
-                                    src="{{ asset('images/card-item6.jpg') }}" />
+                                @if($product->image)
+                                    <img alt="{{ $product->name }}" class="product-image img-fluid"
+                                        src="{{ asset('storage/' . $product->image) }}" />
+                                @else
+                                    <img alt="{{ $product->name }}" class="product-image img-fluid"
+                                        src="{{ asset('images/card-item6.jpg') }}" />
+                                @endif
                                 <div class="cart-concern position-absolute d-flex justify-content-center">
                                     <div class="cart-button d-flex gap-2 justify-content-center align-items-center">
-                                        <button class="btn btn-light" data-bs-target="#modallong"
-                                            data-bs-toggle="modal" type="button">
+                                        <button class="btn btn-light add-to-cart-btn"
+                                                data-product-id="{{ $product->id }}"
+                                                data-product-name="{{ $product->name }}"
+                                                data-product-price="{{ $product->price }}"
+                                                data-product-stock="{{ $product->stock }}"
+                                                title="Add to Cart"
+                                                type="button">
                                             <svg class="shopping-carriage">
                                                 <use xlink:href="#shopping-carriage">
                                                 </use>
                                             </svg>
                                         </button>
-                                        <button class="btn btn-light" data-bs-target="#modaltoggle"
-                                            data-bs-toggle="modal" type="button">
+                                        <button class="btn btn-light quick-view-btn"
+                                                data-product-id="{{ $product->id }}"
+                                                data-bs-target="#modaltoggle"
+                                                data-bs-toggle="modal"
+                                                title="Quick View"
+                                                type="button">
                                             <svg class="quick-view">
                                                 <use xlink:href="#quick-view">
                                                 </use>
@@ -1220,420 +2148,219 @@
                                     </div>
                                 </div>
                                 <!-- cart-concern -->
-                            </div>
-                            <div class="card-detail d-flex justify-content-between align-items-center mt-3">
-                                <h3 class="card-title fs-6 fw-normal m-0">
-                                    <a href="index.html">
-                                        Running shoes for men
-                                    </a>
-                                </h3>
-                                <span class="card-price fw-bold">
-                                    $99
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col mb-4 mb-3">
-                        <div class="product-card position-relative">
-                            <div class="card-img">
-                                <img alt="product-item" class="product-image img-fluid"
-                                    src="{{ asset('images/card-item7.jpg') }}" />
-                                <div class="cart-concern position-absolute d-flex justify-content-center">
-                                    <div class="cart-button d-flex gap-2 justify-content-center align-items-center">
-                                        <button class="btn btn-light" data-bs-target="#modallong"
-                                            data-bs-toggle="modal" type="button">
-                                            <svg class="shopping-carriage">
-                                                <use xlink:href="#shopping-carriage">
-                                                </use>
-                                            </svg>
-                                        </button>
-                                        <button class="btn btn-light" data-bs-target="#modaltoggle"
-                                            data-bs-toggle="modal" type="button">
-                                            <svg class="quick-view">
-                                                <use xlink:href="#quick-view">
-                                                </use>
-                                            </svg>
-                                        </button>
+                                @if($product->stock <= 5 && $product->stock > 0)
+                                    <div class="position-absolute top-0 end-0 m-2">
+                                        <span class="badge bg-warning text-dark">Low Stock</span>
                                     </div>
-                                </div>
-                                <!-- cart-concern -->
-                            </div>
-                            <div class="card-detail d-flex justify-content-between align-items-center mt-3">
-                                <h3 class="card-title fs-6 fw-normal m-0">
-                                    <a href="index.html">
-                                        Running shoes for men
-                                    </a>
-                                </h3>
-                                <span class="card-price fw-bold">
-                                    $99
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col mb-4 mb-3">
-                        <div class="product-card position-relative">
-                            <div class="card-img">
-                                <img alt="product-item" class="product-image img-fluid"
-                                    src="{{ asset('images/card-item8.jpg') }}" />
-                                <div class="cart-concern position-absolute d-flex justify-content-center">
-                                    <div class="cart-button d-flex gap-2 justify-content-center align-items-center">
-                                        <button class="btn btn-light" data-bs-target="#modallong"
-                                            data-bs-toggle="modal" type="button">
-                                            <svg class="shopping-carriage">
-                                                <use xlink:href="#shopping-carriage">
-                                                </use>
-                                            </svg>
-                                        </button>
-                                        <button class="btn btn-light" data-bs-target="#modaltoggle"
-                                            data-bs-toggle="modal" type="button">
-                                            <svg class="quick-view">
-                                                <use xlink:href="#quick-view">
-                                                </use>
-                                            </svg>
-                                        </button>
+                                @elseif($product->stock == 0)
+                                    <div class="position-absolute top-0 end-0 m-2">
+                                        <span class="badge bg-danger">Out of Stock</span>
                                     </div>
-                                </div>
-                                <!-- cart-concern -->
+                                @endif
                             </div>
-                            <div class="card-detail d-flex justify-content-between align-items-center mt-3">
+                            <div class="card-detail mt-3">
                                 <h3 class="card-title fs-6 fw-normal m-0">
-                                    <a href="index.html">
-                                        Running shoes for men
+                                    <a href="#" title="{{ $product->name }}">
+                                        {{ \Illuminate\Support\Str::limit($product->name, 25) }}
                                     </a>
                                 </h3>
-                                <span class="card-price fw-bold">
-                                    $99
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col mb-4 mb-3">
-                        <div class="product-card position-relative">
-                            <div class="card-img">
-                                <img alt="product-item" class="product-image img-fluid"
-                                    src="{{ asset('images/card-item9.jpg') }}" />
-                                <div class="cart-concern position-absolute d-flex justify-content-center">
-                                    <div class="cart-button d-flex gap-2 justify-content-center align-items-center">
-                                        <button class="btn btn-light" data-bs-target="#modallong"
-                                            data-bs-toggle="modal" type="button">
-                                            <svg class="shopping-carriage">
-                                                <use xlink:href="#shopping-carriage">
-                                                </use>
-                                            </svg>
-                                        </button>
-                                        <button class="btn btn-light" data-bs-target="#modaltoggle"
-                                            data-bs-toggle="modal" type="button">
-                                            <svg class="quick-view">
-                                                <use xlink:href="#quick-view">
-                                                </use>
-                                            </svg>
-                                        </button>
+                                <div class="product-rating mb-2">
+                                    <span class="rating-stars">
+                                        <i class="star filled">★</i>
+                                        <i class="star filled">★</i>
+                                        <i class="star filled">★</i>
+                                        <i class="star filled">★</i>
+                                        <i class="star">★</i>
+                                    </span>
+                                    <span class="rating-text">(4.0)</span>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="card-price fw-bold">
+                                        ${{ number_format($product->price, 0) }}
+                                    </span>
+                                    @if($product->category)
+                                        <span class="badge bg-secondary text-light small">{{ $product->category->name }}</span>
+                                    @endif
+                                </div>
+                                @if($product->brand)
+                                    <div class="mt-2">
+                                        <small class="text-muted">{{ $product->brand }}</small>
                                     </div>
-                                </div>
-                                <!-- cart-concern -->
-                            </div>
-                            <div class="card-detail d-flex justify-content-between align-items-center mt-3">
-                                <h3 class="card-title fs-6 fw-normal m-0">
-                                    <a href="index.html">
-                                        Running shoes for men
-                                    </a>
-                                </h3>
-                                <span class="card-price fw-bold">
-                                    $99
-                                </span>
+                                @endif
                             </div>
                         </div>
                     </div>
-                    <div class="col mb-4 mb-3">
-                        <div class="product-card position-relative">
-                            <div class="card-img">
-                                <img alt="product-item" class="product-image img-fluid"
-                                    src="{{ asset('images/card-item10.jpg') }}" />
-                                <div class="cart-concern position-absolute d-flex justify-content-center">
-                                    <div class="cart-button d-flex gap-2 justify-content-center align-items-center">
-                                        <button class="btn btn-light" data-bs-target="#modallong"
-                                            data-bs-toggle="modal" type="button">
-                                            <svg class="shopping-carriage">
-                                                <use xlink:href="#shopping-carriage">
-                                                </use>
-                                            </svg>
-                                        </button>
-                                        <button class="btn btn-light" data-bs-target="#modaltoggle"
-                                            data-bs-toggle="modal" type="button">
-                                            <svg class="quick-view">
-                                                <use xlink:href="#quick-view">
-                                                </use>
-                                            </svg>
-                                        </button>
-                                    </div>
-                                </div>
-                                <!-- cart-concern -->
-                            </div>
-                            <div class="card-detail d-flex justify-content-between align-items-center mt-3">
-                                <h3 class="card-title fs-6 fw-normal m-0">
-                                    <a href="index.html">
-                                        Running shoes for men
-                                    </a>
-                                </h3>
-                                <span class="card-price fw-bold">
-                                    $99
-                                </span>
-                            </div>
+                    @empty
+                    <div class="col-12">
+                        <div class="text-center py-5">
+                            <p class="text-muted">No products available at the moment.</p>
                         </div>
                     </div>
+                    @endforelse
                 </div>
             </div>
         </div>
     </section>
-    <footer class="py-5 border-top" id="footer">
-        <div class="container-lg">
-            <div class="row">
-                <div class="col-lg-2 pb-3">
-                    <div class="footer-menu">
-                        <h5 class="widget-title pb-2">
-                            Info
-                        </h5>
-                        <ul class="menu-list list-unstyled">
-                            <li class="pb-2">
-                                <a href="#">
-                                    Track Your Order
-                                </a>
-                            </li>
-                            <li class="pb-2">
-                                <a href="index.html">
-                                    Our Blog
-                                </a>
-                            </li>
-                            <li class="pb-2">
-                                <a href="#">
-                                    Privacy policy
-                                </a>
-                            </li>
-                            <li class="pb-2">
-                                <a href="#">
-                                    Shipping
-                                </a>
-                            </li>
-                            <li class="pb-2">
-                                <a href="#">
-                                    Contact Us
-                                </a>
-                            </li>
-                            <li class="pb-2">
-                                <a href="#">
-                                    Help
-                                </a>
-                            </li>
-                            <li class="pb-2">
-                                <a href="#">
-                                    Community
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-2 pb-3">
-                    <div class="footer-menu">
-                        <h5 class="widget-title pb-2">
-                            About
-                        </h5>
-                        <ul class="menu-list list-unstyled">
-                            <li class="pb-2">
-                                <a href="#">
-                                    History
-                                </a>
-                            </li>
-                            <li class="pb-2">
-                                <a href="#">
-                                    Our Team
-                                </a>
-                            </li>
-                            <li class="pb-2">
-                                <a href="#">
-                                    Services
-                                </a>
-                            </li>
-                            <li class="pb-2">
-                                <a href="#">
-                                    Company
-                                </a>
-                            </li>
-                            <li class="pb-2">
-                                <a href="#">
-                                    Manufacture
-                                </a>
-                            </li>
-                            <li class="pb-2">
-                                <a href="#">
-                                    Wholesale
-                                </a>
-                            </li>
-                            <li class="pb-2">
-                                <a href="#">
-                                    Retail
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-2 pb-3">
-                    <div class="footer-menu">
-                        <h5 class="widget-title pb-2">
-                            Women Shoes
-                        </h5>
-                        <ul class="menu-list list-unstyled">
-                            <li class="pb-2">
-                                <a href="#">
-                                    Track Your Order
-                                </a>
-                            </li>
-                            <li class="pb-2">
-                                <a href="index.html">
-                                    Our Blog
-                                </a>
-                            </li>
-                            <li class="pb-2">
-                                <a href="#">
-                                    Privacy policy
-                                </a>
-                            </li>
-                            <li class="pb-2">
-                                <a href="#">
-                                    Shipping
-                                </a>
-                            </li>
-                            <li class="pb-2">
-                                <a href="#">
-                                    Contact Us
-                                </a>
-                            </li>
-                            <li class="pb-2">
-                                <a href="#">
-                                    Help
-                                </a>
-                            </li>
-                            <li class="pb-2">
-                                <a href="#">
-                                    Community
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-2 pb-3">
-                    <div class="footer-menu">
-                        <h5 class="widget-title pb-2">
-                            Popular
-                        </h5>
-                        <ul class="menu-list list-unstyled">
-                            <li class="pb-2">
-                                <a href="#">
-                                    Prices Drop
-                                </a>
-                            </li>
-                            <li class="pb-2">
-                                <a href="#">
-                                    New Products
-                                </a>
-                            </li>
-                            <li class="pb-2">
-                                <a href="#">
-                                    Best Sales
-                                </a>
-                            </li>
-                            <li class="pb-2">
-                                <a href="index.html">
-                                    Stores
-                                </a>
-                            </li>
-                            <li class="pb-2">
-                                <a data-bs-target="#modallogin" data-bs-toggle="modal" href="#">
-                                    Login ta
-                                </a>
-                            </li>
-                            <li class="pb-2">
-                                <a data-bs-target="#modallong" data-bs-toggle="modal" href="#">
-                                    Cart
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-2 pb-3">
-                    <div class="footer-menu">
-                        <h5 class="widget-title pb-2">
-                            Mens Collection
-                        </h5>
-                        <ul class="menu-list list-unstyled">
-                            <li class="pb-2">
-                                <a href="#">
-                                    Delivery
-                                </a>
-                            </li>
-                            <li class="pb-2">
-                                <a href="index.html">
-                                    About Us
-                                </a>
-                            </li>
-                            <li class="pb-2">
-                                <a href="#">
-                                    Shoes
-                                </a>
-                            </li>
-                            <li class="pb-2">
-                                <a href="#">
-                                    Contact Us
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-2 pb-3">
-                    <div class="footer-menu">
-                        <h5 class="widget-title pb-3">
-                            Get In Touch
-                        </h5>
-                        <div class="footer-contact-text">
-                            <span>
-                                Stylish Online Store 123 Main Street, Toulouse - France.
-                            </span>
-                            <span>
-                                Call us: (+33) 800 456 789-987
-                            </span>
-                            <span class="text-hover fw-bold light-border">
-                                <a href="mailto:contact@yourwebsite.com">
-                                    contact@yourwebsite.com
-                                </a>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <p>
-                        &copy; Copyright Stylish 2023.
-                    </p>
-                </div>
-                <div class="col-md-6 text-lg-end">
-                    <p>
-                        Free HTML by
-                        <a href="https://templatesjungle.com/" target="_blank">
-                            TemplatesJungle
-                        </a>
-                        <br />
-                        Distributed by
-                        <a href="https://themewagon.com" target="blank">
-                            ThemeWagon
-                        </a>
-                    </p>
-                </div>
-            </div>
-        </div>
-    </footer>
+
     <script src="{{ asset('js/jquery-1.11.0.min.js') }}"></script>
     <script src="{{ asset('js/plugins.js') }}"></script>
     <script src="{{ asset('js/script.js') }}"></script>
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+
+    <!-- Initialize Swiper -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize main hero swiper
+            if (document.querySelector('.main-swiper')) {
+                const mainSwiper = new Swiper('.main-swiper', {
+                    // Navigation arrows
+                    navigation: {
+                        nextEl: '.swiper-button-next',
+                        prevEl: '.swiper-button-prev',
+                    },
+                    // Pagination
+                    pagination: {
+                        el: '.swiper-pagination',
+                        clickable: true,
+                    },
+                    // Settings
+                    loop: true,
+                    autoplay: {
+                        delay: 5000,
+                        disableOnInteraction: false,
+                    },
+                    effect: 'slide',
+                    speed: 800,
+                    spaceBetween: 0,
+                    slidesPerView: 1,
+                    // Responsive breakpoints
+                    breakpoints: {
+                        768: {
+                            speed: 1000,
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+
+    <!-- Cart functionality -->
+    <script>
+        $(document).ready(function() {
+            // Add CSRF token to all AJAX requests
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            // Add to cart functionality
+            $('.add-to-cart-btn').on('click', function(e) {
+                e.preventDefault();
+
+                const productId = $(this).data('product-id');
+                const productName = $(this).data('product-name');
+                const productPrice = $(this).data('product-price');
+                const productStock = $(this).data('product-stock');
+
+                // Check if user is logged in
+                @guest
+                    alert('Please login to add items to cart');
+                    window.location.href = "{{ route('login') }}";
+                    return;
+                @endguest
+
+                // Check stock availability
+                if (productStock <= 0) {
+                    alert('Sorry, this product is out of stock');
+                    return;
+                }
+
+                const button = $(this);
+                const originalHtml = button.html();
+
+                // Show loading state
+                button.html('<div class="spinner-border spinner-border-sm" role="status"></div>');
+                button.prop('disabled', true);
+
+                // Send AJAX request
+                $.ajax({
+                    url: '{{ route("cart.add") }}',
+                    method: 'POST',
+                    data: {
+                        product_id: productId,
+                        quantity: 1
+                    },
+                    success: function(response) {
+                        if (response.success) {
+                            // Show success message
+                            showSuccessAlert(productName + ' added to cart successfully!');
+
+                            // Update cart count if counter exists
+                            updateCartCount();
+                        } else {
+                            alert(response.message || 'Error adding product to cart');
+                        }
+                    },
+                    error: function(xhr) {
+                        const response = xhr.responseJSON;
+                        alert(response?.message || 'Error adding product to cart');
+                    },
+                    complete: function() {
+                        // Restore button state
+                        button.html(originalHtml);
+                        button.prop('disabled', false);
+                    }
+                });
+            });
+
+            // Quick view functionality
+            $('.quick-view-btn').on('click', function(e) {
+                const productId = $(this).data('product-id');
+                // TODO: Load product details in modal
+                console.log('Quick view for product:', productId);
+            });
+
+            // Success alert function
+            function showSuccessAlert(message) {
+                // Remove existing alerts
+                $('.success-alert').remove();
+
+                // Create alert
+                const alert = $(`
+                    <div class="success-alert position-fixed top-0 end-0 m-3" style="z-index: 9999;">
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <i class="fas fa-check-circle me-2"></i>
+                            ${message}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+                    </div>
+                `);
+
+                $('body').append(alert);
+
+                // Auto-hide after 3 seconds
+                setTimeout(function() {
+                    alert.fadeOut(function() {
+                        $(this).remove();
+                    });
+                }, 3000);
+            }
+
+            // Update cart count
+            function updateCartCount() {
+                $.get('{{ route("cart.count") }}', function(data) {
+                    $('.cart-count').text(data.count);
+                }).fail(function() {
+                    console.log('Failed to update cart count');
+                });
+            }
+        });
+    </script>
+
+    <!-- Add meta tag for CSRF token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 </body>
 
 </html>

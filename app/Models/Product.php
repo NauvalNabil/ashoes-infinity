@@ -14,7 +14,7 @@ class Product extends Model
         'description',
         'price',
         'stock',
-        'category',
+        'category_id',
         'brand',
         'color',
         'sizes',
@@ -29,4 +29,22 @@ class Product extends Model
         'is_active' => 'boolean',
         'price' => 'decimal:2'
     ];
+
+    // Relasi dengan Category
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    // Scope untuk produk aktif
+    public function scopeActive($query)
+    {
+        return $query->where('is_active', true);
+    }
+
+    // Scope untuk produk dengan stok rendah
+    public function scopeLowStock($query, $threshold = 10)
+    {
+        return $query->where('stock', '<=', $threshold)->where('stock', '>', 0);
+    }
 }

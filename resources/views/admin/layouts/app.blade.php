@@ -18,10 +18,10 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    
+
     <!-- Tailwind CSS & Custom Assets -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    
+
     <link href="{{ asset('css/vendor.css') }}" rel="stylesheet" />
     <link href="{{ asset('style.css') }}" rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com" rel="preconnect" />
@@ -39,59 +39,37 @@
             margin: 0;
             overflow-x: hidden;
         }
-        
-        /* Custom animations for active nav links */
-        .nav-link-active {
-            background: linear-gradient(135deg, #ec4899 0%, #be185d 100%) !important;
-            box-shadow: 0 4px 12px rgba(236, 72, 153, 0.25);
-            border-color: #ec4899 !important;
+
+        /* Improved sidebar styling */
+        #adminSidebar {
+            backdrop-filter: blur(10px);
         }
-        
-        /* Collapsed sidebar icon styling */
-        .sidebar-collapsed-icon {
-            width: 48px !important;
-            height: 48px !important;
-            display: flex !important;
-            align-items: center !important;
-            justify-content: center !important;
-            margin: 0 auto !important;
-            border-radius: 8px !important;
-        }
-        
-        /* Gradient buttons */
-        .btn-gradient-pink {
-            background: linear-gradient(135deg, #ec4899 0%, #be185d 100%);
-        }
-        
-        .btn-gradient-pink:hover {
-            background: linear-gradient(135deg, #be185d 0%, #9d174d 100%);
-        }
-        
+
         /* Custom scrollbar */
         ::-webkit-scrollbar {
-            width: 8px;
+            width: 6px;
         }
-        
+
         ::-webkit-scrollbar-track {
-            background: #1a1a1a;
+            background: #374151;
         }
-        
+
         ::-webkit-scrollbar-thumb {
-            background: #ec4899;
-            border-radius: 4px;
+            background: #6b7280;
+            border-radius: 3px;
         }
-        
+
         ::-webkit-scrollbar-thumb:hover {
-            background: #be185d;
+            background: #9ca3af;
         }
-        
+
         /* Alert transitions */
         [role="alert"] {
             transition: all 0.3s ease;
         }
-        
+
         /* Mobile responsive adjustments */
-        @media (max-width: 768px) {
+        @media (max-width: 1024px) {
             .sidebar-mobile-hidden {
                 transform: translateX(-100%);
             }
@@ -103,66 +81,102 @@
 
 <body>
     <!-- Admin Sidebar -->
-    <nav class="fixed top-0 left-0 h-screen w-72 bg-gray-900 border-r border-slate-700 z-40 transition-all duration-300 ease-in-out overflow-y-auto lg:translate-x-0 -translate-x-full" id="adminSidebar">
-        <div class="h-[5.5rem] border-b border-slate-700 flex items-center justify-center">
-            <h3 class="text-white font-bold text-2xl text-center">Admin Panel</h3>
+    <nav class="fixed top-0 left-0 h-screen w-64 bg-gray-900 border-r border-gray-700 z-40 transition-all duration-300 ease-in-out overflow-y-auto lg:translate-x-0 -translate-x-full" id="adminSidebar">
+        <!-- Header -->
+        <div class="h-16 border-b border-gray-700 flex items-center justify-center px-4">
+            <div class="flex items-center space-x-2">
+                <div class="h-8 w-8 bg-gradient-to-r from-pink-500 to-orange-400 rounded-lg flex items-center justify-center">
+                    <i class="fas fa-shoe-prints text-white text-sm"></i>
+                </div>
+                <h3 class="text-white font-bold text-lg">Admin Panel</h3>
+            </div>
         </div>
-        <ul class="py-6 space-y-2 px-4">
-            <li>
-                <a href="{{ route('admin.dashboard') }}"
-                    class="flex items-center px-5 py-3.5 text-gray-400 hover:text-white hover:bg-gray-800 rounded-lg transition-all duration-200 border border-transparent hover:border-gray-600 font-medium text-sm {{ request()->routeIs('admin.dashboard') ? 'nav-link-active text-white border-pink-500' : '' }}">
-                    <i class="fas fa-tachometer-alt w-5 mr-3 text-center flex-shrink-0"></i>
-                    <span>Dashboard</span>
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('admin.products.index') }}"
-                    class="flex items-center px-5 py-3.5 text-gray-400 hover:text-white hover:bg-gray-800 rounded-lg transition-all duration-200 border border-transparent hover:border-gray-600 font-medium text-sm {{ request()->routeIs('admin.products.*') ? 'nav-link-active text-white border-pink-500' : '' }}">
-                    <i class="fas fa-box w-5 mr-3 text-center flex-shrink-0"></i>
-                    <span>Products</span>
-                </a>
-            </li>
-            <li>
-                <a href="#" class="flex items-center px-5 py-3.5 text-gray-400 hover:text-white hover:bg-gray-800 rounded-lg transition-all duration-200 border border-transparent hover:border-gray-600 font-medium text-sm">
-                    <i class="fas fa-users w-5 mr-3 text-center flex-shrink-0"></i>
-                    <span>Users</span>
-                </a>
-            </li>
-            <li>
-                <a href="#" class="flex items-center px-5 py-3.5 text-gray-400 hover:text-white hover:bg-gray-800 rounded-lg transition-all duration-200 border border-transparent hover:border-gray-600 font-medium text-sm">
-                    <i class="fas fa-shopping-cart w-5 mr-3 text-center flex-shrink-0"></i>
-                    <span>Orders</span>
-                </a>
-            </li>
-            <li>
-                <a href="#" class="flex items-center px-5 py-3.5 text-gray-400 hover:text-white hover:bg-gray-800 rounded-lg transition-all duration-200 border border-transparent hover:border-gray-600 font-medium text-sm">
-                    <i class="fas fa-tags w-5 mr-3 text-center flex-shrink-0"></i>
-                    <span>Categories</span>
-                </a>
-            </li>
-            <li>
-                <a href="#" class="flex items-center px-5 py-3.5 text-gray-400 hover:text-white hover:bg-gray-800 rounded-lg transition-all duration-200 border border-transparent hover:border-gray-600 font-medium text-sm">
-                    <i class="fas fa-chart-bar w-5 mr-3 text-center flex-shrink-0"></i>
-                    <span>Analytics</span>
-                </a>
-            </li>
-            <li>
-                <a href="#" class="flex items-center px-5 py-3.5 text-gray-400 hover:text-white hover:bg-gray-800 rounded-lg transition-all duration-200 border border-transparent hover:border-gray-600 font-medium text-sm">
-                    <i class="fas fa-cog w-5 mr-3 text-center flex-shrink-0"></i>
-                    <span>Settings</span>
-                </a>
-            </li>
-            <li>
-                <a href="{{ url('/') }}" class="flex items-center px-5 py-3.5 text-gray-400 hover:text-white hover:bg-gray-800 rounded-lg transition-all duration-200 border border-transparent hover:border-gray-600 font-medium text-sm">
-                    <i class="fas fa-globe w-5 mr-3 text-center flex-shrink-0"></i>
-                    <span>View Site</span>
-                </a>
-            </li>
-        </ul>
+
+        <!-- Navigation Menu -->
+        <div class="py-4">
+            <ul class="space-y-1 px-3">
+                <li>
+                    <a href="{{ route('admin.dashboard') }}"
+                        class="group flex items-center px-3 py-2.5 text-sm font-medium rounded-lg transition-all duration-200 {{ request()->routeIs('admin.dashboard') ? 'bg-pink-600 text-white shadow-lg' : 'text-gray-300 hover:bg-gray-800 hover:text-white' }}">
+                        <i class="fas fa-tachometer-alt w-5 h-5 mr-3 flex-shrink-0"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('admin.products.index') }}"
+                        class="group flex items-center px-3 py-2.5 text-sm font-medium rounded-lg transition-all duration-200 {{ request()->routeIs('admin.products.*') ? 'bg-pink-600 text-white shadow-lg' : 'text-gray-300 hover:bg-gray-800 hover:text-white' }}">
+                        <i class="fas fa-box w-5 h-5 mr-3 flex-shrink-0"></i>
+                        <span>Products</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('admin.categories.index') }}"
+                        class="group flex items-center px-3 py-2.5 text-sm font-medium rounded-lg transition-all duration-200 {{ request()->routeIs('admin.categories.*') ? 'bg-pink-600 text-white shadow-lg' : 'text-gray-300 hover:bg-gray-800 hover:text-white' }}">
+                        <i class="fas fa-tags w-5 h-5 mr-3 flex-shrink-0"></i>
+                        <span>Categories</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('admin.users.index') }}"
+                        class="group flex items-center px-3 py-2.5 text-sm font-medium rounded-lg transition-all duration-200 {{ request()->routeIs('admin.users.*') ? 'bg-pink-600 text-white shadow-lg' : 'text-gray-300 hover:bg-gray-800 hover:text-white' }}">
+                        <i class="fas fa-users w-5 h-5 mr-3 flex-shrink-0"></i>
+                        <span>Users</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('admin.analytics.index') }}"
+                        class="group flex items-center px-3 py-2.5 text-sm font-medium rounded-lg transition-all duration-200 {{ request()->routeIs('admin.analytics.*') ? 'bg-pink-600 text-white shadow-lg' : 'text-gray-300 hover:bg-gray-800 hover:text-white' }}">
+                        <i class="fas fa-chart-bar w-5 h-5 mr-3 flex-shrink-0"></i>
+                        <span>Analytics</span>
+                    </a>
+                </li>
+            </ul>
+
+            <!-- Divider -->
+            <div class="my-4 px-3">
+                <div class="border-t border-gray-700"></div>
+            </div>
+
+            <!-- Secondary Menu -->
+            <ul class="space-y-1 px-3">
+                <li>
+                    <a href="{{ url('/') }}"
+                        class="group flex items-center px-3 py-2.5 text-sm font-medium rounded-lg transition-all duration-200 text-gray-300 hover:bg-gray-800 hover:text-white">
+                        <i class="fas fa-external-link-alt w-5 h-5 mr-3 flex-shrink-0"></i>
+                        <span>View Website</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- User Profile at Bottom -->
+        <div class="absolute bottom-0 left-0 right-0 p-3 border-t border-gray-700 bg-gray-900">
+            <div class="flex items-center space-x-3">
+                <div class="h-10 w-10 rounded-full bg-gradient-to-r from-pink-500 to-orange-400 flex items-center justify-center text-white font-semibold text-sm">
+                    {{ strtoupper(substr(auth()->user()->name ?? 'A', 0, 1)) }}
+                </div>
+                <div class="flex-1 min-w-0">
+                    <div class="text-sm font-medium text-white truncate">
+                        {{ auth()->user()->name ?? 'Admin' }}
+                    </div>
+                    <div class="text-xs text-gray-400 truncate">
+                        {{ auth()->user()->email ?? 'admin@example.com' }}
+                    </div>
+                </div>
+                <form method="POST" action="{{ route('logout') }}" class="inline">
+                    @csrf
+                    <button type="submit"
+                            class="p-2 text-gray-400 hover:text-white hover:bg-gray-800 rounded-lg transition-colors duration-200"
+                            title="Logout">
+                        <i class="fas fa-sign-out-alt w-4 h-4"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
     </nav>
 
     <!-- Main Content -->
-    <main class="lg:ml-72 ml-0 min-h-screen bg-slate-900 transition-all duration-300 ease-in-out" id="adminMain">
+    <main class="lg:ml-64 ml-0 min-h-screen bg-slate-900 transition-all duration-300 ease-in-out" id="adminMain">
         <!-- Top Bar -->
         <div class="bg-slate-800 border-b border-slate-700 px-4 lg:px-8 py-4 flex justify-between items-center sticky top-0 z-30">
             <button class="bg-transparent border border-slate-600 text-slate-400 hover:text-white hover:bg-slate-700 hover:border-slate-500 p-2 rounded-md transition-all duration-200 w-10 h-10 flex items-center justify-center" id="toggleSidebar">
@@ -220,96 +234,10 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-        // Sidebar Toggle with proper mobile/desktop behavior
+        // Simple sidebar toggle for mobile
         document.getElementById('toggleSidebar').addEventListener('click', function() {
             const sidebar = document.getElementById('adminSidebar');
-            const main = document.getElementById('adminMain');
-            const isMobile = window.innerWidth <= 1024;
-
-            if (isMobile) {
-                // Mobile: toggle sidebar visibility
-                sidebar.classList.toggle('-translate-x-full');
-            } else {
-                // Desktop: toggle sidebar width
-                if (sidebar.classList.contains('w-72')) {
-                    // Collapse sidebar
-                    sidebar.classList.remove('w-72');
-                    sidebar.classList.add('w-20');
-                    main.classList.remove('lg:ml-72');
-                    main.classList.add('lg:ml-20');
-                    
-                    // Hide text spans and title
-                    const spans = sidebar.querySelectorAll('span');
-                    spans.forEach(span => span.classList.add('hidden'));
-                    
-                    const title = sidebar.querySelector('h3');
-                    title.classList.add('hidden');
-                    
-                    // Adjust links for collapsed state - make them square (1:1 ratio)
-                    const links = sidebar.querySelectorAll('a');
-                    links.forEach(link => {
-                        link.classList.add('sidebar-collapsed-icon');
-                        link.classList.remove('px-5', 'py-3.5');
-                        
-                        const icon = link.querySelector('i');
-                        if (icon) {
-                            icon.classList.remove('mr-3', 'w-5');
-                            icon.classList.add('text-base');
-                        }
-                    });
-                    
-                    // Adjust list spacing for collapsed state
-                    const list = sidebar.querySelector('ul');
-                    list.classList.remove('space-y-2');
-                    list.classList.add('space-y-3');
-                    
-                    // Hide header padding - keep same height for alignment
-                    const header = sidebar.querySelector('.p-6');
-                    if (header) {
-                        header.classList.remove('p-6');
-                        header.classList.add('py-8', 'px-2'); // Keep vertical padding same, reduce horizontal
-                    }
-                    
-                } else {
-                    // Expand sidebar
-                    sidebar.classList.remove('w-20');
-                    sidebar.classList.add('w-72');
-                    main.classList.remove('lg:ml-20');
-                    main.classList.add('lg:ml-72');
-                    
-                    // Show text spans and title
-                    const spans = sidebar.querySelectorAll('span');
-                    spans.forEach(span => span.classList.remove('hidden'));
-                    
-                    const title = sidebar.querySelector('h3');
-                    title.classList.remove('hidden');
-                    
-                    // Reset links for expanded state
-                    const links = sidebar.querySelectorAll('a');
-                    links.forEach(link => {
-                        link.classList.remove('sidebar-collapsed-icon');
-                        link.classList.add('px-5', 'py-3.5');
-                        
-                        const icon = link.querySelector('i');
-                        if (icon) {
-                            icon.classList.remove('text-base');
-                            icon.classList.add('mr-3', 'w-5');
-                        }
-                    });
-                    
-                    // Reset list spacing
-                    const list = sidebar.querySelector('ul');
-                    list.classList.remove('space-y-3');
-                    list.classList.add('space-y-2');
-                    
-                    // Restore header padding
-                    const header = sidebar.querySelector('.py-6');
-                    if (header) {
-                        header.classList.remove('py-6', 'px-2');
-                        header.classList.add('p-6');
-                    }
-                }
-            }
+            sidebar.classList.toggle('-translate-x-full');
         });
 
         // Auto-hide alerts after 5 seconds
@@ -327,7 +255,7 @@
             const sidebar = document.getElementById('adminSidebar');
             const toggleButton = document.getElementById('toggleSidebar');
             const isMobile = window.innerWidth <= 1024;
-            
+
             if (isMobile && !sidebar.contains(e.target) && !toggleButton.contains(e.target)) {
                 sidebar.classList.add('-translate-x-full');
             }
@@ -336,67 +264,28 @@
         // Handle window resize
         window.addEventListener('resize', function() {
             const sidebar = document.getElementById('adminSidebar');
-            const main = document.getElementById('adminMain');
             const isMobile = window.innerWidth <= 1024;
-            
-            if (isMobile) {
-                // Reset to mobile state
-                main.classList.remove('lg:ml-72', 'lg:ml-20');
-                main.classList.add('ml-0');
-                sidebar.classList.add('-translate-x-full');
-                
-                // Reset sidebar to full width for mobile
-                sidebar.classList.remove('w-20');
-                sidebar.classList.add('w-72');
-                
-                // Show all elements
-                const spans = sidebar.querySelectorAll('span');
-                spans.forEach(span => span.classList.remove('hidden'));
-                
-                const title = sidebar.querySelector('h3');
-                title.classList.remove('hidden');
-                
-                // Reset links for mobile/desktop resize
-                const links = sidebar.querySelectorAll('a');
-                links.forEach(link => {
-                    link.classList.remove('sidebar-collapsed-icon');
-                    link.classList.add('px-5', 'py-3.5');
-                    
-                    const icon = link.querySelector('i');
-                    if (icon) {
-                        icon.classList.remove('text-base');
-                        icon.classList.add('mr-3', 'w-5');
-                    }
-                });
-                
-                // Reset list spacing
-                const list = sidebar.querySelector('ul');
-                list.classList.remove('space-y-3');
-                list.classList.add('space-y-2');
-            } else {
-                // Desktop state
+
+            if (!isMobile) {
+                // Desktop: show sidebar
                 sidebar.classList.remove('-translate-x-full');
-                main.classList.remove('ml-0');
-                
-                if (sidebar.classList.contains('w-20')) {
-                    main.classList.add('lg:ml-20');
-                } else {
-                    main.classList.add('lg:ml-72');
-                }
+            } else {
+                // Mobile: hide sidebar
+                sidebar.classList.add('-translate-x-full');
             }
         });
-        
+
         // Dropdown toggle for user menu
         const dropdownButton = document.querySelector('[data-bs-toggle="dropdown"]');
         const dropdownMenu = dropdownButton ? dropdownButton.nextElementSibling : null;
-        
+
         if (dropdownButton && dropdownMenu) {
             dropdownButton.addEventListener('click', function(e) {
                 e.preventDefault();
                 e.stopPropagation();
                 dropdownMenu.classList.toggle('hidden');
             });
-            
+
             // Close dropdown when clicking outside
             document.addEventListener('click', function(e) {
                 if (!dropdownButton.contains(e.target) && !dropdownMenu.contains(e.target)) {
@@ -408,13 +297,10 @@
         // Initialize sidebar state
         function initializeSidebar() {
             const sidebar = document.getElementById('adminSidebar');
-            const main = document.getElementById('adminMain');
             const isMobile = window.innerWidth <= 1024;
-            
+
             if (isMobile) {
                 sidebar.classList.add('-translate-x-full');
-                main.classList.remove('lg:ml-72');
-                main.classList.add('ml-0');
             }
         }
 
