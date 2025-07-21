@@ -578,7 +578,7 @@
     }
     
     .text-pink {
-        color: #ec4899;
+        color: #8b4513;
         text-decoration: none;
     }
     

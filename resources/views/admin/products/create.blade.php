@@ -411,7 +411,7 @@
     
     .form-control:focus, 
     .form-select:focus {
-        border-color: #ec4899 !important;
+        border-color: #8b4513 !important;
         box-shadow: 0 0 0 0.2rem rgba(236, 72, 153, 0.25);
         background: #111827 !important;
         color: #ffffff !important;
@@ -449,13 +449,13 @@
     }
     
     .upload-area:hover {
-        border-color: #ec4899;
-        background: rgba(236, 72, 153, 0.05);
+        border-color: #8b4513;
+        background: rgba(139, 69, 19, 0.05);
     }
     
     .upload-area.dragover {
-        border-color: #ec4899;
-        background: rgba(236, 72, 153, 0.1);
+        border-color: #8b4513;
+        background: rgba(139, 69, 19, 0.1);
     }
     
     .upload-icon {
@@ -569,7 +569,7 @@
     }
     
     .btn-primary {
-        background: linear-gradient(135deg, #ec4899 0%, #be185d 100%);
+        background: linear-gradient(135deg, #8b4513 0%, #654321 100%);
         color: white;
         border: none;
     }

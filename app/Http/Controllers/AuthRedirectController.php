@@ -18,7 +18,7 @@ class AuthRedirectController extends Controller
             if ($user->isAdmin()) {
                 return redirect()->route('admin.dashboard');
             } else {
-                return redirect()->route('dashboard');
+                return redirect()->route('home');
             }
         }
         

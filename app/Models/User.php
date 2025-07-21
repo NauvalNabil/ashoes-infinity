@@ -70,4 +70,20 @@ class User extends Authenticatable
     {
         return $this->role === $role;
     }
+
+    /**
+     * Cart relationship
+     */
+    public function carts()
+    {
+        return $this->hasMany(Cart::class);
+    }
+
+    /**
+     * Orders relationship
+     */
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
 }

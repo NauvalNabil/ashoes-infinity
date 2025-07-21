@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -11,42 +12,9 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    public function index()
     {
-        $query = Product::query();
-
-        // Search functionality
-        if ($request->filled('search')) {
-            $search = $request->search;
-            $query->where(function($q) use ($search) {
-                $q->where('name', 'like', "%{$search}%")
-                  ->orWhere('brand', 'like', "%{$search}%")
-                  ->orWhere('description', 'like', "%{$search}%");
-            });
-        }
-
-        // Category filter
-        if ($request->filled('category')) {
-            $query->where('category', $request->category);
-        }
-
-        // Status filter
-        if ($request->filled('status')) {
-            $isActive = $request->status === 'active';
-            $query->where('is_active', $isActive);
-        }
-
-        // Stock filter
-        if ($request->filled('stock')) {
-            if ($request->stock === 'low') {
-                $query->where('stock', '<=', 10)->where('stock', '>', 0);
-            } elseif ($request->stock === 'out') {
-                $query->where('stock', 0);
-            }
-        }
-
-        $products = $query->latest()->paginate(10);
-        
+        $products = Product::latest()->paginate(12);
         return view('admin.products.index', compact('products'));
     }
 
@@ -63,35 +31,36 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $validated = $request->validate([
+        $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
             'price' => 'required|numeric|min:0',
             'stock' => 'required|integer|min:0',
-            'category' => 'nullable|string|max:255',
-            'brand' => 'nullable|string|max:255',
-            'color' => 'nullable|string|max:255',
-            'sizes' => 'nullable|array',
+            'category' => 'nullable|string',
+            'brand' => 'nullable|string',
+            'color' => 'nullable|string',
+            'sizes' => 'required|array',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'gallery.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'is_active' => 'boolean'
         ]);
 
-        // Handle main image upload
+        $data = $request->except(['image', 'gallery']);
+
+        // Handle main image
         if ($request->hasFile('image')) {
-            $validated['image'] = $request->file('image')->store('products', 'public');
+            $data['image'] = $request->file('image')->store('products', 'public');
         }
 
-        // Handle gallery images upload
+        // Handle gallery images
         if ($request->hasFile('gallery')) {
             $galleryPaths = [];
             foreach ($request->file('gallery') as $file) {
                 $galleryPaths[] = $file->store('products/gallery', 'public');
             }
-            $validated['gallery'] = $galleryPaths;
+            $data['gallery'] = $galleryPaths;
         }
 
-        Product::create($validated);
+        Product::create($data);
 
         return redirect()->route('admin.products.index')
             ->with('success', 'Product created successfully.');
@@ -118,30 +87,33 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        $validated = $request->validate([
+        $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
             'price' => 'required|numeric|min:0',
             'stock' => 'required|integer|min:0',
-            'category' => 'nullable|string|max:255',
-            'brand' => 'nullable|string|max:255',
-            'color' => 'nullable|string|max:255',
-            'sizes' => 'nullable|array',
+            'category' => 'nullable|string',
+            'brand' => 'nullable|string',
+            'color' => 'nullable|string',
+            'sizes' => 'required|array',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'gallery.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'is_active' => 'boolean'
         ]);
 
-        // Handle main image upload
+        $data = $request->except(['image', 'gallery']);
+
+        // Handle main image
         if ($request->hasFile('image')) {
+            // Delete old image
             if ($product->image) {
                 Storage::disk('public')->delete($product->image);
             }
-            $validated['image'] = $request->file('image')->store('products', 'public');
+            $data['image'] = $request->file('image')->store('products', 'public');
         }
 
-        // Handle gallery images upload
+        // Handle gallery images
         if ($request->hasFile('gallery')) {
+            // Delete old gallery images
             if ($product->gallery) {
                 foreach ($product->gallery as $oldImage) {
                     Storage::disk('public')->delete($oldImage);
@@ -151,10 +123,10 @@ class ProductController extends Controller
             foreach ($request->file('gallery') as $file) {
                 $galleryPaths[] = $file->store('products/gallery', 'public');
             }
-            $validated['gallery'] = $galleryPaths;
+            $data['gallery'] = $galleryPaths;
         }
 
-        $product->update($validated);
+        $product->update($data);
 
         return redirect()->route('admin.products.index')
             ->with('success', 'Product updated successfully.');
@@ -165,11 +137,10 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        // Delete associated images
+        // Delete images
         if ($product->image) {
             Storage::disk('public')->delete($product->image);
         }
-        
         if ($product->gallery) {
             foreach ($product->gallery as $image) {
                 Storage::disk('public')->delete($image);
@@ -185,18 +156,11 @@ class ProductController extends Controller
     /**
      * Toggle product status
      */
-    public function toggleStatus(Request $request, Product $product)
+    public function toggleStatus(Product $product)
     {
-        $validated = $request->validate([
-            'is_active' => 'required|boolean'
-        ]);
-
-        $product->update(['is_active' => $validated['is_active']]);
-
-        return response()->json([
-            'success' => true,
-            'message' => 'Product status updated successfully.',
-            'is_active' => $product->is_active
-        ]);
+        $product->update(['is_active' => !$product->is_active]);
+        
+        $status = $product->is_active ? 'activated' : 'deactivated';
+        return redirect()->back()->with('success', "Product {$status} successfully.");
     }
 }
